@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.8.2" />
+    <PackageReference Include="Azure.Storage.Files.DataLake" Version="12.12.1" />
+    <PackageReference Include="PnP.Core.Admin" Version="1.8.0" />
+    <PackageReference Include="PnP.Core.Auth" Version="1.8.0" />
+  </ItemGroup>
+
+</Project>
