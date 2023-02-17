@@ -62,6 +62,7 @@ namespace SharepointDatalakeFunction
 
                 //remove filename from pricipal dir
                 var fileRefModified = file.FileRef.Replace($"{file.FileLeafRef}", "");
+
              //   fileRefModified = file.FileRef.Replace($"{file.FileLeafRef}", "");
              //   fileRefModified = file.FileRef.Replace($"{file.FileLeafRef}", "");
                 //upload to datalake v2
