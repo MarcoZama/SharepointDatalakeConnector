@@ -4,6 +4,8 @@ using Microsoft.Azure.WebJobs.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using PnP.Core.Auth;
 using PnP.Core.Services.Builder.Configuration;
 using SharepointDatalakeConnector.Service.ConfigModels;
@@ -36,9 +38,14 @@ namespace SharepointDatalakeFunction
                    configuration.GetSection("SharepointSettings").Bind(settings);
                });
 
+
             var config = builder.GetContext().Configuration;
             var azureFunctionSettings = new AzureFunctionSettings();
             config.Bind(azureFunctionSettings);
+
+           
+
+
 
             builder.Services.AddPnPCore(options =>
             {
@@ -63,6 +70,10 @@ namespace SharepointDatalakeFunction
                        });
             });
 
+            var serviceCollection = new ServiceCollection();
+            serviceCollection.AddLogging();
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+            var _logger = serviceProvider.GetService<ILogger<Startup>>();
         }
 
     }

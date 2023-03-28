@@ -18,7 +18,7 @@ namespace SharepointDatalakeConnector.Service.Services
     public class DatalakeService : IDatalakeService
     {
         private readonly IPnPContextFactory _pnPContextFactory;
-        private readonly ILogger<SharepointService> _log;
+        private readonly ILogger _log;
         private readonly DataLakeSettings _datalakeSettings;
 
 
@@ -38,6 +38,7 @@ namespace SharepointDatalakeConnector.Service.Services
         {
             try
             {
+                _log.LogInformation($"Uploading file {fileName} in {directory}");
                 DataLakeDirectoryClient directoryClient = fileSystemClient.GetDirectoryClient(directory);
 
                 DataLakeFileClient fileClient = directoryClient.GetFileClient(fileName);
@@ -48,7 +49,7 @@ namespace SharepointDatalakeConnector.Service.Services
             }
             catch (Exception ex)
             {
-                _log.LogError(ex.Message, ex);
+                _log.LogError($"Error uploading file {{fileName}} in {{directory}} {ex.Message}");
                 throw;
             }
         
