@@ -54,6 +54,8 @@ namespace SharepointDatalakeFunction
             string fromDatetime = req.Query["fromDatetime"];
             string folder = req.Query["folder"];
 
+
+
             var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings:Base");
             _log.LogInformation("C# HTTP trigger function processed a request.");
 
