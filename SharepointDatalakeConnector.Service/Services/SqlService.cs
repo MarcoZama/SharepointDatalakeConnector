@@ -23,8 +23,7 @@ namespace SharepointDatalakeConnector.Service.Services
         private readonly DataLakeSettings _datalakeSettings;
 
         public SqlService(
-            ILogger<SharepointService> log,
-            IOptions<DataLakeSettings> datalakeOptions)
+            ILogger<SharepointService> log)
         {
             _log = log;
       

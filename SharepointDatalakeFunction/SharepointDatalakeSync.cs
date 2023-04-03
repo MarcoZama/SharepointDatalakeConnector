@@ -23,6 +23,7 @@ namespace SharepointDatalakeFunction
         private readonly ILogger<SharepointDatalakeSyncFunction> _log;
         private readonly DataLakeSettings _datalakeSettings;
         private readonly SharepointSettings _sharepointSettings;
+        private readonly DatabaseSettings _databaseSettings;
 
         private readonly IPnPContextFactory _contextFactory;
 
@@ -33,6 +34,7 @@ namespace SharepointDatalakeFunction
             ILogger<SharepointDatalakeSyncFunction> log,
             IOptions<DataLakeSettings> datalakeSettings,
             IOptions<SharepointSettings> sharepointSettings,
+            IOptions<DatabaseSettings> databaseSettings,
             IPnPContextFactory contextFactory)
         {
             _sharepointService = sharepointService;
@@ -40,6 +42,7 @@ namespace SharepointDatalakeFunction
             _log = log;
             _datalakeSettings = datalakeSettings.Value;
             _sharepointSettings = sharepointSettings.Value;
+            _databaseSettings = databaseSettings.Value;
             _contextFactory = contextFactory;
             _sqlService = sqlService;
         }
@@ -54,9 +57,8 @@ namespace SharepointDatalakeFunction
             string fromDatetime = req.Query["fromDatetime"];
             string folder = req.Query["folder"];
 
+            var connectionString = _databaseSettings.Base;
 
-
-            var connectionString = Environment.GetEnvironmentVariable("ConnectionStrings:Base");
             _log.LogInformation("C# HTTP trigger function processed a request.");
 
             var files = await _sharepointService.GetFileByExtensionFromDocumentLibraryAsync(_sharepointSettings.SiteUrl, sidcode, fromDatetime);
