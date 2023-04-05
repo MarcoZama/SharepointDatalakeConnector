@@ -49,7 +49,7 @@ namespace SharepointDatalakeFunction
                    configuration.GetSection("DatabaseSettings").Bind(settings);
                });
 
-            var prova = Environment.GetEnvironmentVariable("SharepointSettings:ClientId");
+            
 
             builder.Services.AddPnPCore(options =>
             {
